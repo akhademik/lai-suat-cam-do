@@ -15,8 +15,8 @@
   $: final_value_discount = get_final_money(value.pawn_money, discount_interest);
 </script>
 
-<div class="flex w-full flex-col justify-center gap-2 border border-white p-2">
-  <h1 class="py-3 text-center text-2xl font-bold sm:text-3xl">CẦM ĐỒ NGỌC MAI</h1>
+<div class="flex flex-col justify-center w-full gap-2 p-2 border border-white">
+  <h1 class="py-3 text-2xl font-bold text-center sm:text-3xl">CẦM ĐỒ NGỌC MAI</h1>
   {#if value.pawn_money}
     <section class="flex justify-between sm:pt-16">
       <p>Tiền gốc:</p>
@@ -26,14 +26,14 @@
       <p>Lãi 5 %:</p>
       <p class="text-red-500">
         {final_value_normal ? `(${format_number_to_string(normal_interest)}) - ` : ''}
-        <span class="font-bold text-white">{final_value_normal || '----'}</span>
+        <span class="font-bold text-green-300">{final_value_normal || '----'}</span>
       </p>
     </section>
     <section class="flex justify-between">
       <p>Lãi 4,5 %:</p>
       <p class="text-red-500">
         {final_value_discount ? `(${format_number_to_string(discount_interest)}) - ` : ''}
-        <span class="font-bold text-white">{final_value_discount || '----'}</span>
+        <span class="font-bold text-green-300">{final_value_discount || '----'}</span>
       </p>
     </section>
   {/if}
