@@ -34,9 +34,9 @@
   $: the_asset.total_days = get_total_days(the_asset.pawn_date, the_asset.redemption_date);
 </script>
 
-<div class="flex w-full flex-col gap-4 sm:max-w-4xl sm:flex-row-reverse">
+<div class="flex flex-col w-full gap-4 sm:max-w-4xl sm:flex-row-reverse">
   <MultipleResult value={the_asset_array} />
-  <div class="flex w-full flex-col sm:justify-center sm:gap-4 sm:border sm:p-2">
+  <div class="flex flex-col w-full gap-3 sm:justify-center sm:gap-4 sm:border sm:p-2">
     <CPawnMoney bind:value={the_asset.pawn_money} />
     <CDateInput
       name="Ngày Cầm"
@@ -47,7 +47,7 @@
     <div class="flex flex-col gap-1">
       <p>Số Ngày Cầm</p>
       <input
-        class="border border-white bg-slate-600 px-2 py-1 font-bold tracking-widest text-yellow-300 sm:h-12"
+        class="px-2 py-1 font-bold tracking-widest text-yellow-300 border border-white bg-slate-600 sm:h-12"
         disabled
         type="text"
         value={the_asset.total_days} />
@@ -55,10 +55,10 @@
     <div class="flex items-center justify-center gap-3">
       <button
         on:click={() => (the_asset_array = [])}
-        class="w-20 border border-white px-3 py-1 text-lg font-bold">Xoá</button>
+        class="w-20 px-3 py-1 text-lg font-bold border border-white">Xoá</button>
       <button
         on:click={on_add_click}
-        class="w-20 border border-white px-3 py-1 text-lg font-bold">Thêm</button>
+        class="w-20 px-3 py-1 text-lg font-bold border border-white">Thêm</button>
     </div>
   </div>
 </div>
