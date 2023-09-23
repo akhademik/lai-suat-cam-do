@@ -7,25 +7,17 @@ export const get_total_days = (pawn_date: Date, redemption_date: Date) => {
   return total_days + 1;
 };
 
-export const format_money_input = (input: string | undefined) => {
-  if (input !== undefined) {
-    input = input
-      .replace(/\D/g, '') // remove all non-digit
-      .replace(/^0+/, '') // remove leading zero
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ','); // insert ',' every 3 digits for thousand separators
-    return input;
-  }
+export const format_money_input = (input: string) => {
+  input = input
+    .replace(/\D/g, '') // remove all non-digit
+    .replace(/^0+/, '') // remove leading zero
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ','); // insert ',' every 3 digits for thousand separators
+  return input;
 };
 
-export const get_redemption_money = (
-  amount: string | undefined,
-  days: number | null,
-  interest: number = 0.05
-) => {
-  if (!amount || !days) return 0;
-  const amount_to_number = Number(amount.replace(/,/g, ''));
-  const result = Math.round((interest / 30) * days * amount_to_number);
-
+export const final_interest = (pawn_money_str: string, days: number, interest: number = 0.05) => {
+  const pawn_money = Number(pawn_money_str.replace(/,/g, ''));
+  const result = Math.round((interest / 30) * days * pawn_money);
   return result;
 };
 
@@ -33,16 +25,14 @@ export const format_number_to_string = (number: number | string) => {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-export const get_final_money = (amount: string | undefined, interest: number | string) => {
-  if (!amount || typeof interest != 'number') return;
-  const amount_to_number = Number(amount.replace(/,/g, ''));
-  const result = amount_to_number + interest;
+export const final_money = (pawn_money_str: string, interest: number) => {
+  const pawn_money = Number(pawn_money_str.replace(/,/g, ''));
+  const result = pawn_money + interest;
   return format_number_to_string(result);
 };
 
-export const final_money_no_format = (amount: string | undefined, interest: number | string) => {
-  if (!amount || typeof interest != 'number') return;
-  const amount_to_number = Number(amount.replace(/,/g, ''));
-  const result = amount_to_number + interest;
+export const final_money_no_format = (pawn_money_str: string, interest: number) => {
+  const pawn_money = Number(pawn_money_str.replace(/,/g, ''));
+  const result = pawn_money + interest;
   return result;
 };

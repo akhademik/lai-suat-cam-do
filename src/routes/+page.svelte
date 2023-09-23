@@ -6,7 +6,7 @@
 </script>
 
 <main
-  class="flex h-screen max-w-7xl flex-col items-center justify-center gap-5 p-5 font-roboto text-white">
+  class="mx-auto flex h-screen max-w-7xl flex-col items-center gap-5 p-5 pt-[10%] font-roboto text-white">
   <CSelectType />
   {#if $selected_type === 'single'}
     <Single />

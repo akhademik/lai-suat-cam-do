@@ -9,8 +9,8 @@ body {
 * {
   --line-color: limegreen;
   --bg-color: rgb(0 100 0 / 0.05);
-  /* 
-  outline: 1px dashed var(--line-color);
+
+  /* outline: 1px dashed var(--line-color);
   background: var(--bg-color); */
 }
 
