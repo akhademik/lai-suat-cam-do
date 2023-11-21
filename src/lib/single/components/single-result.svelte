@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { TheAsset } from '$lib/types/pawn-shop';
-  import { final_interest, final_money, format_number_to_string } from '$lib/utils/formHelper';
+  import { final_interest, final_money, format_number_to_string } from '$lib/utils/form-helper';
 
   export let asset: TheAsset;
 

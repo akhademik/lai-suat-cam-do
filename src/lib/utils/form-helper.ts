@@ -1,3 +1,5 @@
+import type { TheAssetItem } from '$lib/types/pawn-shop';
+
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 export const get_total_days = (pawn_date: Date, redemption_date: Date) => {
@@ -35,4 +37,34 @@ export const final_money_no_format = (pawn_money_str: string, interest: number) 
   const pawn_money = Number(pawn_money_str.replace(/,/g, ''));
   const result = pawn_money + interest;
   return result;
+};
+
+export const init_asset = () => {
+  const first_of_month = new Date();
+  first_of_month.setDate(1);
+
+  let _asset = {
+    pawn_date: first_of_month,
+    pawn_money: '',
+    total_days: 0,
+    redemption_date: new Date()
+  };
+
+  const save_asset = sessionStorage.getItem('asset');
+  if (save_asset) {
+    _asset = JSON.parse(save_asset);
+    _asset.pawn_date = new Date(_asset.pawn_date);
+    _asset.redemption_date = new Date(_asset.redemption_date);
+  }
+  return _asset;
+};
+
+export const init_asset_array = () => {
+  let asset_array: TheAssetItem[] = [];
+
+  const saved_array = sessionStorage.getItem('asset-array');
+  if (saved_array) {
+    asset_array = JSON.parse(saved_array);
+  }
+  return asset_array;
 };

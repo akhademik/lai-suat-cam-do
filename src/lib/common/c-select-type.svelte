@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { handle_select } from '$lib/utils/selectLogic';
+  import { handle_select } from '$lib/utils/select-logic';
   import { selected_type } from '../../routes/store';
 
   $: is_single = $selected_type === 'single';

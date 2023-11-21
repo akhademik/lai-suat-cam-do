@@ -2,20 +2,11 @@
   import CDateInput from '$lib/common/c-date-input.svelte';
   import CPawnMoney from '$lib/common/c-pawn-money.svelte';
   import type { TheAsset, TheAssetItem } from '$lib/types/pawn-shop';
-  import { get_total_days } from '$lib/utils/formHelper';
+  import { get_total_days, init_asset, init_asset_array } from '$lib/utils/form-helper';
   import MultipleResult from './components/multiple-result.svelte';
 
-  let first_of_month = new Date();
-  first_of_month.setDate(1);
-
-  const asset: TheAsset = {
-    pawn_date: first_of_month,
-    pawn_money: '',
-    total_days: 0,
-    redemption_date: new Date()
-  };
-
-  let asset_array: TheAssetItem[] = [];
+  const asset: TheAsset = init_asset();
+  let asset_array: TheAssetItem[] = init_asset_array();
 
   const on_add_click = () => {
     if (!asset.pawn_money) return;
@@ -31,11 +22,20 @@
     asset.pawn_money = '';
   };
 
+  const handle_delete = (event: CustomEvent<number>) => {
+    const item_index = event.detail;
+    asset_array.splice(item_index, 1);
+    asset_array = asset_array;
+  };
+
   $: asset.total_days = get_total_days(asset.pawn_date, asset.redemption_date);
+  $: sessionStorage.setItem('asset-array', JSON.stringify(asset_array));
 </script>
 
 <div class="flex w-full flex-col gap-4 sm:max-w-4xl sm:flex-row-reverse">
-  <MultipleResult {asset_array} />
+  <MultipleResult
+    {asset_array}
+    on:delete={handle_delete} />
   <div class="flex w-full flex-col gap-3 sm:justify-center sm:gap-4 sm:border sm:p-2">
     <CPawnMoney bind:value={asset.pawn_money} />
     <CDateInput

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { format_money_input } from '$lib/utils/formHelper';
+  import { format_money_input } from '$lib/utils/form-helper';
 
   export let value: string;
 
-  $: if (value) value = format_money_input(value);
+  $: value = format_money_input(value);
 </script>
 
 <section>

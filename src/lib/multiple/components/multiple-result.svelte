@@ -5,10 +5,12 @@
     final_money,
     final_money_no_format,
     format_number_to_string
-  } from '$lib/utils/formHelper';
+  } from '$lib/utils/form-helper';
+  import { createEventDispatcher } from 'svelte';
 
   export let asset_array: TheAssetItem[];
 
+  const dispatch = createEventDispatcher();
   const total_sum_normal = (value: TheAssetItem[], rate: number) => {
     let result = 0;
     for (let i = 0; i < value.length; i++) {
@@ -34,7 +36,12 @@
         {@const money_discount = final_money(item.pawn_money, discount_interest)}
         <li>
           <section class="grid grid-cols-[20%_40%_40%]">
-            <span class="underline">No {item_index + 1}: </span>
+            <span
+              ><button
+                class="underline hover:text-red-500 hover:line-through"
+                on:click={() => dispatch('delete', item_index)}
+                >No {item_index + 1}:
+              </button></span>
             <span class="text-end">{item.total_days} ngày</span>
             <span class="text-end">{item.pawn_money}</span>
           </section>

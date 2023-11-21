@@ -2,20 +2,13 @@
   import CDateInput from '$lib/common/c-date-input.svelte';
   import CPawnMoney from '$lib/common/c-pawn-money.svelte';
   import type { TheAsset } from '$lib/types/pawn-shop';
-  import { get_total_days } from '$lib/utils/formHelper';
+  import { get_total_days, init_asset } from '$lib/utils/form-helper';
   import SingleResult from './components/single-result.svelte';
 
-  let first_of_month = new Date();
-  first_of_month.setDate(1);
-
-  const asset: TheAsset = {
-    pawn_date: first_of_month,
-    pawn_money: '',
-    total_days: 0,
-    redemption_date: new Date()
-  };
+  let asset: TheAsset = init_asset();
 
   $: asset.total_days = get_total_days(asset.pawn_date, asset.redemption_date);
+  $: sessionStorage.setItem('asset', JSON.stringify(asset));
 </script>
 
 <div class="flex w-full flex-col gap-4 sm:max-w-3xl sm:flex-row-reverse">
