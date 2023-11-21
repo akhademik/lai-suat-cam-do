@@ -1,35 +1,35 @@
 <script lang="ts">
-  import CDateInput from '$lib/common/c-date-input.svelte';
-  import CPawnMoney from '$lib/common/c-pawn-money.svelte';
-  import type { TheAsset, TheAssetItem } from '$lib/types/pawn-shop';
-  import { get_total_days, init_asset, init_asset_array } from '$lib/utils/form-helper';
-  import MultipleResult from './components/multiple-result.svelte';
+  import CDateInput from '$lib/common/c-date-input.svelte'
+  import CPawnMoney from '$lib/common/c-pawn-money.svelte'
+  import type { TheAsset, TheAssetItem } from '$lib/types/pawn-shop'
+  import { init_asset, init_asset_array, total_pawn_days } from '$lib/utils/form-helper'
+  import MultipleResult from './components/multiple-result.svelte'
 
-  const asset: TheAsset = init_asset();
-  let asset_array: TheAssetItem[] = init_asset_array();
+  const asset: TheAsset = init_asset()
+  let asset_array: TheAssetItem[] = init_asset_array()
 
   const on_add_click = () => {
-    if (!asset.pawn_money) return;
+    if (!asset.pawn_money) return
     asset_array = [
       ...asset_array,
       {
         id: crypto.randomUUID(),
         pawn_money: asset.pawn_money,
-        total_days: asset.total_days
-      }
-    ];
+        total_days: asset.total_days,
+      },
+    ]
 
-    asset.pawn_money = '';
-  };
+    asset.pawn_money = ''
+  }
 
   const handle_delete = (event: CustomEvent<number>) => {
-    const item_index = event.detail;
-    asset_array.splice(item_index, 1);
-    asset_array = asset_array;
-  };
+    const item_index = event.detail
+    asset_array.splice(item_index, 1)
+    asset_array = asset_array
+  }
 
-  $: asset.total_days = get_total_days(asset.pawn_date, asset.redemption_date);
-  $: sessionStorage.setItem('asset-array', JSON.stringify(asset_array));
+  $: asset.total_days = total_pawn_days(asset.pawn_date, asset.redemption_date)
+  $: sessionStorage.setItem('asset-array', JSON.stringify(asset_array))
 </script>
 
 <div class="flex w-full flex-col gap-4 sm:max-w-4xl sm:flex-row-reverse">
