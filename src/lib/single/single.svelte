@@ -1,14 +1,14 @@
 <script lang="ts">
-  import CDateInput from '$lib/common/c-date-input.svelte';
-  import CPawnMoney from '$lib/common/c-pawn-money.svelte';
-  import type { TheAsset } from '$lib/types/pawn-shop';
-  import { get_total_days, init_asset } from '$lib/utils/form-helper';
-  import SingleResult from './components/single-result.svelte';
+  import CDateInput from '$lib/common/c-date-input.svelte'
+  import CPawnMoney from '$lib/common/c-pawn-money.svelte'
+  import type { TheAsset } from '$lib/types/pawn-shop'
+  import { init_asset, total_pawn_days } from '$lib/utils/form-helper'
+  import SingleResult from './components/single-result.svelte'
 
-  let asset: TheAsset = init_asset();
+  let asset: TheAsset = init_asset()
 
-  $: asset.total_days = get_total_days(asset.pawn_date, asset.redemption_date);
-  $: sessionStorage.setItem('asset', JSON.stringify(asset));
+  $: asset.total_days = total_pawn_days(asset.pawn_date, asset.redemption_date)
+  $: sessionStorage.setItem('asset', JSON.stringify(asset))
 </script>
 
 <div class="flex w-full flex-col gap-4 sm:max-w-3xl sm:flex-row-reverse">
