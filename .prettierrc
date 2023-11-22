@@ -1,6 +1,8 @@
 {
   "arrowParens": "avoid",
   "bracketSameLine": true,
+  "bracketSpacing": true,
+  "endOfLine": "lf",
   "overrides": [
     {
       "files": "*.svelte",
@@ -16,8 +18,10 @@
     "@ianvs/prettier-plugin-sort-imports"
   ],
   "printWidth": 100,
+  "semi": false,
   "singleAttributePerLine": true,
   "singleQuote": true,
   "tabWidth": 2,
-  "trailingComma": "none"
+  "trailingComma": "es5",
+  "useTabs": false
 }
