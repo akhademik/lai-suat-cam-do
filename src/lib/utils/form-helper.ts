@@ -19,8 +19,10 @@ export const format_money_input = (input: string) => {
 
 export const final_interest = (pawn_money_str: string, days: number, interest: number = 0.05) => {
   const pawn_money = Number(pawn_money_str.replace(/,/g, ''))
-  const result = Math.round((interest / 30) * days * pawn_money)
-  return result
+  // const result = Math.round((interest / 30) * days * pawn_money)
+  const result = (interest / 30) * days * pawn_money
+  const rounded_result = Math.round(result / 1000) * 1000
+  return rounded_result
 }
 
 export const number_to_string = (number: number | string) => {

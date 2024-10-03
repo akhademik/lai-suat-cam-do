@@ -4,7 +4,7 @@
 
   export let asset: TheAsset
 
-  $: normal_interest = final_interest(asset.pawn_money, asset.total_days, 0.05)
+  $: normal_interest = final_interest(asset.pawn_money, asset.total_days)
   $: discount_interest = final_interest(asset.pawn_money, asset.total_days, 0.045)
   $: money_normal = final_money(asset.pawn_money, normal_interest)
   $: money_discount = final_money(asset.pawn_money, discount_interest)
