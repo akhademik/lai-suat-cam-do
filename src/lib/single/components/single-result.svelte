@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { TheAsset } from '$lib/types/pawn-shop'
+  import type { PawnRecord } from '$lib/types/pawn-shop'
   import { final_interest, final_money, number_to_string } from '$lib/utils/form-helper'
 
-  export let asset: TheAsset
+  export let asset: PawnRecord
 
-  $: normal_interest = final_interest(asset.pawn_money, asset.total_days)
+  $: normal_interest = final_interest(asset.pawn_money, asset.total_days, 0.05)
   $: discount_interest = final_interest(asset.pawn_money, asset.total_days, 0.045)
   $: money_normal = final_money(asset.pawn_money, normal_interest)
   $: money_discount = final_money(asset.pawn_money, discount_interest)
