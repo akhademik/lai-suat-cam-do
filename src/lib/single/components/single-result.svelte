@@ -6,8 +6,10 @@
 
   $: normal_interest = final_interest(asset.pawn_money, asset.total_days)
   $: discount_interest = final_interest(asset.pawn_money, asset.total_days, 0.045)
+  $: special_discount_interest = final_interest(asset.pawn_money, asset.total_days, 0.04)
   $: money_normal = final_money(asset.pawn_money, normal_interest)
   $: money_discount = final_money(asset.pawn_money, discount_interest)
+  $: money_special_discount = final_money(asset.pawn_money, special_discount_interest)
 </script>
 
 <div class="flex w-full flex-col justify-center gap-2 border border-white p-2">
@@ -31,6 +33,14 @@
         {money_discount && `(${number_to_string(discount_interest)})`}
         <span class="px-2 text-white">-</span>
         <span class="font-bold text-green-300">{money_discount}</span>
+      </p>
+    </section>
+    <section class="flex justify-between">
+      <p>Lãi 4 %:</p>
+      <p class="text-red-500">
+        {money_special_discount && `(${number_to_string(special_discount_interest)})`}
+        <span class="px-2 text-white">-</span>
+        <span class="font-bold text-green-300">{money_special_discount}</span>
       </p>
     </section>
   {/if}
